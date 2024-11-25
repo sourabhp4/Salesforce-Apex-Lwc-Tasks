@@ -1,12 +1,12 @@
 <template>
   <div class="slds-m-around_large" style="height: 80vh">
 
-    <div class="slds-grid slds-gutters slds-align_absolute-center" style="background-color: #f3f3f3;">
+    <div class="slds-grid slds-gutters slds-align_absolute-center slds-p-around_medium" style="background-color: #f3f3f3;">
       <div class="slds-col slds-size_1-of-3 slds-align_absolute-center">
         <lightning-icon icon-name="custom:custom20"></lightning-icon>
         <span class="slds-m-left_medium" style="font-size: large; text-decoration: solid;">Add Products</span>
       </div>
-      <lightning-input type="search" placeholder="Search" class="slds-col slds-size_1-of-3 slds-align_absolute-center slds-m-bottom_medium" onchange={setSearchString} ></lightning-input>
+      <lightning-input type="search" placeholder="Search" class="slds-col slds-size_1-of-3 slds-align_absolute-center slds-form_horizontal" variant="label-hidden" onchange={setSearchString} ></lightning-input>
       <div class="slds-col slds-size_1-of-3 slds-align_absolute-center">
         <lightning-button variant="brand" label="Save" onclick={handleSave} class=""></lightning-button>
       </div>

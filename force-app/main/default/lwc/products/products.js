@@ -31,7 +31,7 @@ export default class Products extends LightningElement {
 
     dataAll = [];
 
-    searchString = '';
+    @track searchString = '';
     
     @track sortBy = 'Name';
     @track sortDirection = 'asc';
@@ -129,8 +129,6 @@ export default class Products extends LightningElement {
     async handleSave () {
 
         let products = this.dataSelected.map(product => ({ productName: product.Name, productId: product.Id }));
-
-        console.log(JSON.stringify(products))
 
         if (await createAccountProducts({ accountId: this.recordId, products: products })) {
             this.dataSelected = [];
