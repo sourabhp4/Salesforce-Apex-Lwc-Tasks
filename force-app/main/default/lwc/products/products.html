@@ -1,0 +1,54 @@
+<template>
+  <div class="slds-m-around_large" style="height: 80vh">
+
+    <div class="slds-grid slds-gutters slds-align_absolute-center" style="background-color: #f3f3f3;">
+      <div class="slds-col slds-size_1-of-3 slds-align_absolute-center">
+        <lightning-icon icon-name="custom:custom20"></lightning-icon>
+        <span class="slds-m-left_medium" style="font-size: large; text-decoration: solid;">Add Products</span>
+      </div>
+      <lightning-input type="search" placeholder="Search" class="slds-col slds-size_1-of-3 slds-align_absolute-center" onchange={setSearchString} ></lightning-input>
+      <div class="slds-col slds-size_1-of-3 slds-align_absolute-center">
+        <lightning-button variant="brand" label="Save" onclick={handleSave} class=""></lightning-button>
+      </div>
+    </div>
+
+    <br />
+
+    <div style="background-color: #f3f3f3;">
+      <lightning-tabset variant="scoped">
+        <lightning-tab label="All Products">
+          
+          <lightning-datatable
+            lwc:ref="mainTable"
+            key-field="Id"
+            data={dataAll}
+            columns={columnsProducts}
+            onrowselection={getSelectedRows}
+            selected-rows={selectedItemArray}
+          ></lightning-datatable>
+
+        </lightning-tab>
+        <lightning-tab label="Selected" title="Selected products">
+          
+          <lightning-datatable
+            key-field="id"
+            hide-checkbox-column="true"
+            data={dataSelected}
+            columns={columnsProducts}
+          ></lightning-datatable>
+
+        </lightning-tab>
+        <lightning-tab label="Existing">
+          
+          <lightning-datatable
+            key-field="id"
+            hide-checkbox-column="true"
+            data={dataExisting}
+            columns={columnsAccountProducts}
+          ></lightning-datatable>
+        
+        </lightning-tab>
+      </lightning-tabset>
+    </div>
+  </div>
+</template>
