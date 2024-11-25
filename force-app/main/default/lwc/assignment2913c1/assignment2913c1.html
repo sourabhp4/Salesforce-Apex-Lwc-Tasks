@@ -1,0 +1,19 @@
+<template>
+    <lightning-card>
+      <div slot="title">
+          Component 1
+      </div>
+      <div class="slds-m-horizontal_large">
+        <lightning-input 
+          type="text"
+          label="Enter some text"
+          onchange={handleChange}
+        ></lightning-input>
+        <lightning-button 
+          variant="neutral"
+          label="Pass Value" 
+          onclick={passValue}
+        ></lightning-button>
+      </div>
+    </lightning-card>
+</template>

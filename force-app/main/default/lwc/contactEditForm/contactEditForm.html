@@ -1,0 +1,89 @@
+<template>
+    <lightning-card icon-name="standard:contact" variant="base">
+		<div slot="title">
+			Contact Edit Form
+		</div>
+
+		<lightning-button 
+		  variant="base"
+		  label="Call Child" 
+		  onclick={callChild} 
+		></lightning-button>
+
+		<form>
+			<template lwc:if={onlyShow}>
+				<lightning-layout class="slds-grid_align-center">
+				<lightning-layout-item padding="horizontal-small" size="6">
+					<lightning-input
+						type="text"
+						label="First Name"
+						placeholder="First Name"
+						lwc:ref="firstNameElement"
+						value={firstName}
+					></lightning-input>
+					<lightning-input 
+						type="text"
+						label="Last Name"
+						placeholder="Last Name"
+						lwc:ref="lastNameElement"
+						value={lastName}
+						required
+					></lightning-input>
+					<lightning-input
+						type="date"
+						label="DOB"
+						placeholder="Date Of Birth"
+						lwc:ref="dobElement"
+						value={dob}
+					></lightning-input>
+				</lightning-layout-item>
+				<lightning-layout-item padding="horizontal-small" size="6">
+					<lightning-input 
+						type="email"
+						label="Email"
+						placeholder="Email"
+						lwc:ref="emailElement"
+						value={email}
+					></lightning-input>
+					<lightning-input 
+						type="phone"
+						label="Phone"
+						placeholder="Phone"
+						lwc:ref="phoneElement"
+						value={phone}
+					></lightning-input>
+					<lightning-input 
+						type="search"
+						label="Account"
+						placeholder="Account"
+						lwc:ref="accountElement"
+						value={accountName}
+					></lightning-input>
+				</lightning-layout-item>
+				</lightning-layout>
+				<div class="slds-m-top_large slds-align_absolute-center">
+				<lightning-button 
+					label="Cancel" 
+					title="Cancel" 
+					onclick={onCancel}
+				></lightning-button>
+				<lightning-button 
+					variant="brand"
+					label="Save" 
+					title="Save" 
+					type="Submit"
+					onclick={onSave}
+					class="slds-m-left_x-small"
+				></lightning-button>
+				</div>
+			</template>
+	</form>
+
+	  <template if:false={onlyShow}>
+		<c-contact-edit-form-child lwc:ref="childToDisplay" onfieldedit={onEdit} first-name={firstName} last-name={lastName} dob={dob} email={email} phone={phone} account-name={accountName}>
+		</c-contact-edit-form-child>
+	  </template>
+
+    </lightning-card>
+   
+</template>

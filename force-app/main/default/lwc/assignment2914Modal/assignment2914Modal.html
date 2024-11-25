@@ -1,0 +1,14 @@
+<template>
+    <lightning-modal-header label="Contact Details"></lightning-modal-header>
+    <lightning-modal-body>
+        <lightning-record-form
+            object-api-name="Contact"
+            record-id={content}
+            layout-type="Compact"
+        >
+        </lightning-record-form>     
+    </lightning-modal-body>
+    <lightning-modal-footer>
+        <lightning-button label="OK" onclick={handleOkay}></lightning-button>
+    </lightning-modal-footer>
+</template>

@@ -1,0 +1,23 @@
+<template>
+    <lightning-card>
+      <div slot="title">
+          From Child
+      </div>
+      <div class="slds-m-horizontal_large">
+        {message}
+        
+        <br>
+  
+        <lightning-button 
+          variant="brand"
+          label="Call Child function" 
+          onclick={callChildFunction} 
+        ></lightning-button>
+  
+        <br>
+        
+        <c-assignment296-child onpassvalue={handleEvent} lwc:ref="child"></c-assignment296-child>
+      </div>
+      
+    </lightning-card>
+</template>

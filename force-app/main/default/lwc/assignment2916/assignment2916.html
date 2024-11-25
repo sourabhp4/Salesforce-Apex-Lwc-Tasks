@@ -1,0 +1,15 @@
+<template>
+    <lightning-card>
+        <div slot="title">
+            Parent Component
+        </div>
+        <div class="slds-m-horizontal_large">
+            This is the Parent component and Displaying the URL:
+            <p><b>{url}</b></p>
+        </div>
+
+        <br>
+
+        <c-assignment2916-child onbuttonclick={handleURL} ></c-assignment2916-child>
+    </lightning-card>
+</template>

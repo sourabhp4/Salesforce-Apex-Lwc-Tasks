@@ -1,0 +1,45 @@
+<template>
+  <!-- <lightning-record-form
+    record-id={recordId}
+    object-api-name="Contact"
+    layout-type="Compact"
+    mode="view"
+  >
+  </lightning-record-form>
+
+  <lightning-card title="Wire Function" icon-name="standard:contact">
+    <template lwc:if={record.data}>
+      <div class="slds-m-around_medium">
+        <p>{FirstName}</p>
+        <lightning-formatted-name
+          format="short"
+          first-name={record.data.fields.FirstName.value}
+          last-name={record.data.fields.LastName.value}
+        ></lightning-formatted-name>
+      </div>
+    </template>
+    <template lwc:else>
+      Nothing
+    </template>
+  </lightning-card> -->
+
+  <!-- <template lwc:if={opportunitiesList.data}>
+    <template for:each={opportunitiesList.data} for:item="opportunity">
+      <div key={opportunity.Id}>{opportunity.Name}</div>
+    </template>
+  </template> -->
+
+    <template lwc:if={contactList}>
+      <template for:each={contactList} for:item="contact">
+        <div key={contact.Id}>{contact.Id}</div>
+      </template>
+    </template>
+    <template lwc:if={leadList}>
+      <template for:each={leadList} for:item="lead">
+        <div key={lead.Id}>{lead.Id}</div>
+      </template>
+    </template>
+
+    <button onclick={callContactLeads}>Call</button>
+
+</template>

@@ -1,0 +1,61 @@
+<template>
+    <lightning-card icon-name="standard:account" variant="base">
+      <div slot="title">
+          Get Record Using lightning/uiRecordApi
+      </div>
+      <div class="slds-m-horizontal_large">
+        <template lwc:if={account}>
+            <p>Account Name: {account.fields.Name.value}</p>
+            <p>Account Industry: {account.fields.Industry.value}</p>
+            <p>Account Rating: {account.fields.Rating.value}</p>
+        </template>
+      </div>
+    </lightning-card>
+
+    <lightning-card icon-name="standard:account" variant="base">
+        <div slot="title">
+            Create Record Using lightning/uiRecordApi
+        </div>
+        <div class="slds-m-horizontal_large">
+          <lightning-input 
+            type="text"
+            label="Name"
+            name="name"
+            value={name}
+            onchange={handleChange}
+          ></lightning-input>
+          <lightning-select
+              name="rating"
+              label="Rating"
+              value={rating}
+              options={options}
+              onchange={handleChange}
+          ></lightning-select>
+          <div class="slds-m-vertical_large">
+              <lightning-button
+              variant="brand"
+              label="Create Account" 
+              onclick={handleCreate} 
+            ></lightning-button>
+          </div>
+        </div>
+      </lightning-card>
+
+    <lightning-card icon-name="standard:account" variant="base">
+      <div slot="title">
+          Get Contacts based on search string
+      </div>
+      <div class="slds-m-horizontal_large">
+        <lightning-input 
+          type="search"
+          label="Contact Name Search"
+          onchange={handleSearchChange}
+        ></lightning-input>
+        <lightning-datatable
+          key-field="id"
+          data={contacts}
+          columns={columns}
+        ></lightning-datatable>
+      </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,70 @@
+<template>
+    <lightning-card>
+        <div class="slds-p-around_medium">
+            <b>Create Contact</b>
+            <lightning-record-edit-form
+                object-api-name="Contact" onsubmit={saveContact} lwc:ref="recordSavingElement"
+            >
+                <lightning-input-field field-name="LastName"> </lightning-input-field>
+                <lightning-input-field field-name="Title"> </lightning-input-field>
+                <lightning-input-field field-name="Email"> </lightning-input-field>
+                <lightning-input-field field-name="Phone"> </lightning-input-field>
+                <lightning-combobox
+                    name="account"
+                    label="Account"
+                    value={accId}
+                    placeholder="Select Account"
+                    options={options}
+                    onchange={handleChange}
+                    lwc:ref="accountElement"
+                >
+                </lightning-combobox>
+                <div class="slds-var-m-top_medium">
+                    <lightning-button variant="brand" type="submit" label="Save">
+                    </lightning-button>
+                </div>
+            </lightning-record-edit-form>
+        </div>
+        
+
+
+
+        <!-- <form class="slds-m-around_medium">
+            <b>Contact Creation</b>
+            <lightning-input 
+                type="text"
+                label="Last Name"
+                required
+                lwc:ref="lastNameElement"
+            ></lightning-input>
+            <lightning-input 
+                type="text"
+                label="Title"
+                lwc:ref="titleElement"
+            ></lightning-input>
+            <lightning-input 
+                type="email"
+                label="Email"
+                lwc:ref="emailElement"
+            ></lightning-input>
+            <lightning-input 
+                type="phone"
+                label="Phone"
+                lwc:ref="phoneElement"
+            ></lightning-input>
+            <lightning-combobox
+                name="account"
+                label="Account"
+                value={accId}
+                placeholder="Select Account"
+                options={options}
+                onchange={handleChange}
+                lwc:ref="accountElement"
+            >
+            </lightning-combobox>
+            <button type="Submit" onclick={saveContact}></button>
+        </form> -->
+        
+    </lightning-card>
+   
+</template>

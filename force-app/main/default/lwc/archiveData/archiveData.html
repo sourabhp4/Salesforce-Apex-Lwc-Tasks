@@ -1,0 +1,16 @@
+<template>
+    <lightning-card>
+        <div slot="title">
+            Archive Data
+        </div>
+        <div class="slds-m-horizontal_large">
+            <lightning-radio-group style="display:inline;" name="radioGroup" label="Radio Group" options={options} value={value} onchange={handleRadioChange}
+                type="radio"></lightning-radio-group>
+
+            <template lwc:if={value}>
+                <template lwc:if={isShowArchive}><c-archive></c-archive></template>
+                <template lwc:else><c-unarchive></c-unarchive></template>
+            </template>
+        </div>
+    </lightning-card>
+</template>

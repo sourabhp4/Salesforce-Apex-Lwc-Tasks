@@ -1,0 +1,61 @@
+<template>
+    <lightning-card>
+        <div class="slds-m-left_large">
+            Hello World ! My Name is {name}
+
+            <br>
+    
+            <lightning-card>
+                <lightning-input
+                    type="checkbox"
+                    label="Show text"
+                    name="input1"
+                    onchange={showText}
+                ></lightning-input>
+                <br>
+                <template if:true={isTextShow}>
+                    Text is texting...
+                </template>
+            </lightning-card>
+            
+            <br>
+
+            <lightning-datatable
+                key-field="id"
+                data={data}
+                columns={columns}>
+            </lightning-datatable>
+
+        </div>
+    </lightning-card>
+
+    <lightning-card title="Delete Records without server-side script" icon-name="utility:user">
+        <template if:true={accounts}>
+            <div class="slds-var-m-around_medium">
+                <template for:each={accounts} for:item="acc">
+                    <lightning-layout key={acc.Id} class="slds-var-m-vertical_x-small">
+                        <lightning-layout-item flexibility="grow" style="min-width:350px" >
+                            {acc.Name}
+                        </lightning-layout-item>
+                        <lightning-layout-item flexibility="grow">
+                            <lightning-button-icon icon-name="utility:delete" onclick={deleteAccount} data-recordid={acc.Id}>
+
+                            </lightning-button-icon>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </template>
+
+            </div>
+        </template>
+    </lightning-card>
+
+    <lightning-card>
+        <div class="slds-m-left_large">
+            <lightning-input
+              type="text"
+              label="Enter some text"
+              onchange={handleChange}
+            ></lightning-input>
+        </div>
+    </lightning-card>
+</template>

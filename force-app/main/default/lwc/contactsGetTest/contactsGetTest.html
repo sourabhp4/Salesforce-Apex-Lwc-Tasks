@@ -1,0 +1,23 @@
+<template>
+
+    <lightning-input
+        type="text"
+        label="Id"
+        placeholder="Enter Account Id"
+        lwc:ref="idElement"
+    ></lightning-input>
+    
+    <button onclick={getContacts}>
+        Get Related Contacts
+    </button>
+
+    <template lwc:if={isPresent}>
+        <template for:each={results} for:item="contact">
+            <div key={contact.Id}>{contact.Name}</div>
+        </template>
+    </template>
+    <template lwc:else>
+        <div>No Contacts Found</div>
+    </template>
+
+</template>

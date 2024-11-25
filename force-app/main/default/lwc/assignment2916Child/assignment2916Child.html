@@ -1,0 +1,22 @@
+<template>
+    <div class="slds-m-horizontal_large">
+        <p>This is the child component</p>
+        <p>Click below buttons for URL</p>
+        <br>
+        <div>
+            <lightning-button 
+              variant="brand"
+              label="Absyz Link" 
+              name="absyz"
+              onclick={handleClick} 
+            ></lightning-button>
+            <lightning-button 
+              class="slds-m-left_medium"
+              variant="brand"
+              label="Trailhead Link" 
+              name="trailhead"
+              onclick={handleClick} 
+            ></lightning-button>
+        </div>
+    </div>    
+</template>

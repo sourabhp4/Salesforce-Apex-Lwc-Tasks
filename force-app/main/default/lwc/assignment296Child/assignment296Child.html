@@ -1,0 +1,20 @@
+<template>
+  <b class="slds-m-top_large">Child Component</b>
+    <lightning-input 
+      type="text"
+      label="Enter some text"
+      onchange={handleChange}
+    ></lightning-input>
+    <br>
+    <lightning-button 
+      variant="brand"
+      label="Pass Value" 
+      onclick={passToParent}
+    ></lightning-button>
+
+    <br>
+
+    <div>
+      {messageLocal}
+    </div>
+</template>

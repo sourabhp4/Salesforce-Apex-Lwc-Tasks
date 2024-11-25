@@ -1,0 +1,9 @@
+<template>
+    <lightning-card>
+      <template lwc:if={animals}>
+        <template for:each={animals} for:item="animal">
+            {animal}
+        </template>
+      </template>
+    </lightning-card>
+</template>
