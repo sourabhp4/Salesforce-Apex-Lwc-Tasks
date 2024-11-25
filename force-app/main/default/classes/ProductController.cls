@@ -1,14 +1,15 @@
 public with sharing class ProductController {
 
     @AuraEnabled (Cacheable=True)
-    public static List<Product2> getAllProducts(String productCodeString) {
+    public static List<Product2> getAllProducts(String productCodeString, String sortBy, String sortDirection) {
         try {
+            System.Debug(sortBy + ' ' + sortDirection);
             if (productCodeString != null && productCodeString != ''){
                 String likeString = productCodeString + '%';
-                return [SELECT Name, ProductCode FROM Product2 WHERE ProductCode LIKE :likeString LIMIT 15];
+                return Database.query('SELECT Name, ProductCode FROM Product2 WHERE ProductCode LIKE ' + likeString + ' ORDER BY ' + sortBy + ' ' + sortDirection + ' LIMIT 15');
             }
             else {
-                return [SELECT Name, ProductCode FROM Product2 LIMIT 15];
+                return Database.query('SELECT Name, ProductCode FROM Product2 ORDER BY ' + sortBy + ' ' + sortDirection + ' LIMIT 15');
             }
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());

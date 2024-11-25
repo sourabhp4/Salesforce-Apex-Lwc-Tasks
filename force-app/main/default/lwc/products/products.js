@@ -19,8 +19,8 @@ export default class Products extends LightningElement {
     }
 
     columnsProducts = [
-        { label: 'Name', fieldName: 'Name' },
-        { label: 'Product Code', fieldName: 'ProductCode' },
+        { label: 'Name', fieldName: 'Name', sortable: "true" },
+        { label: 'Product Code', fieldName: 'ProductCode', sortable: "true" },
     ];
 
     columnsAccountProducts = [
@@ -32,13 +32,21 @@ export default class Products extends LightningElement {
     dataAll = [];
 
     searchString = '';
+    
+    @track sortBy = 'Name';
+    @track sortDirection = 'asc';
 
-    @wire(getAllProducts, { productCodeString: "$searchString" })
+    @wire(getAllProducts, { productCodeString: "$searchString", sortBy: "$sortBy", sortDirection: "$sortDirection" })
     setDataAll({ data, error }) {
         if (data) {
             this.dataAll = data;
             this.selectedItemArray = this.selectedItemArray.map((item) => (item));
         }
+    }
+
+    doSorting(event) {
+        this.sortBy = event.detail.fieldName;
+        this.sortDirection = event.detail.sortDirection;
     }
 
     dataExisting = [];
@@ -144,139 +152,4 @@ export default class Products extends LightningElement {
             this.dispatchEvent(event);
         }
     }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import { LightningElement, wire, api, track } from 'lwc';
-// import { CurrentPageReference } from 'lightning/navigation';
-
-// import getAllProducts from '@salesforce/apex/ProductController.getAllProducts';
-// import getExistingProducts from '@salesforce/apex/ProductController.getExistingProducts';
-// import createAccountProducts from '@salesforce/apex/ProductController.createAccountProducts';
-// import { ShowToastEvent } from 'lightning/platformShowToastEvent';
-
-// export default class Products extends LightningElement {
-
-//     @api recordId;
-
-//     @wire(CurrentPageReference)
-//     getStateParameters(currentPageReference) {
-//         if (currentPageReference) {
-//             this.recordId = currentPageReference.state.recordId;
-//         }
-//     }
-
-//     columnsProducts = [
-//         { label: 'Name', fieldName: 'Name' },
-//         { label: 'Product Code', fieldName: 'ProductCode' },
-//     ];
-
-//     columnsAccountProducts = [
-//         { label: 'Name', fieldName: 'Name' },
-//         { label: 'Account Name', fieldName: 'AccountName' },
-//         { label: 'Product Name', fieldName: 'ProductName' },
-//     ];
-
-//     dataAll = [];
-
-//     searchString = '';
-
-//     @wire(getAllProducts, { productCodeString: "$searchString" })
-//     setDataAll({ data, error }) {
-//         if (data) {
-//             this.dataAll = data;
-//         }
-//     }
-
-//     dataExisting = [];
-
-//     @wire(getExistingProducts, { accountId: "$recordId" })
-//     setDataExisting({ data, error }) {
-//         if (data) {
-//             this.dataExisting = data.map( accProduct => ({ Name: accProduct.Name, AccountName: accProduct.Account__r.Name, ProductName: accProduct.Product__r.Name }) );
-//         } else if (error) {
-//             console.log('Error:', error);
-//         }
-//     }
-
-//     @track dataSelected = [];
-
-//     @track selectedItemSet = [];
-
-//     getSelectedRows (event) {
-//         try {
-//             let updatedItemsSet = new Set();
-//             // List of selected items we maintain.
-//             let selectedItemsSet = new Set(this.selectedItemSet);
-//             // List of items currently loaded for the current view.
-//             let loadedItemsSet = new Set();
-//             this.dataSelected.map((ele) => {
-//                 loadedItemsSet.add(ele.Id);
-//             });
-//             if (event.detail.selectedRows) {
-//                 event.detail.selectedRows.map((ele) => {
-//                     updatedItemsSet.add(ele.Id);
-//                 });
-//                 // Add any new items to the selectedRows list
-//                 updatedItemsSet.forEach((id) => {
-//                     if (!selectedItemsSet.has(id)) {
-//                         selectedItemsSet.add(id);
-//                     }
-//                 });
-//             }
-//             loadedItemsSet.forEach((id) => {
-//                 if (selectedItemsSet.has(id) && !updatedItemsSet.has(id)) {
-//                     // Remove any items that were unselected.
-//                     selectedItemsSet.delete(id);
-//                 }
-//             });
-//             this.selectedItemSet = [...selectedItemsSet];
-//             console.log('selectedRows==> ' + JSON.stringify(this.selectedItemSet));
-            
-//         } catch (error) {
-//             console.log(error);
-//         }
-//     }
-
-//     setSearchString (event) {
-//         this.searchString = event.detail.value;
-//     }
-
-//     async handleSave () {
-
-//         let products = this.dataSelected.map(product => ({ productName: product.Name, productId: product.Id }));
-
-//         if (await createAccountProducts(this.recordId, products)) {
-//             this.dataSelected = [];
-//             const event = new ShowToastEvent({
-//                 title: 'Success',
-//                 variant: 'success',
-//                 message: 'The Account Products have been created',
-//             });
-//             this.dispatchEvent(event);
-//         } else {
-//             const event = new ShowToastEvent({
-//                 title: 'Error',
-//                 variant: 'error',
-//                 message: 'Something went wrong, Please try again later.',
-//             });
-//             this.dispatchEvent(event);
-//         }
-//     }
-
-// }

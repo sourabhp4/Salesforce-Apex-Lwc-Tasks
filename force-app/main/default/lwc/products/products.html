@@ -25,6 +25,10 @@
             columns={columnsProducts}
             onrowselection={getSelectedRows}
             selected-rows={selectedItemArray}
+            sortable="true"
+            sorted-by={sortBy}
+            sorted-direction={sortDirection}
+            onsort={doSorting}
           ></lightning-datatable>
 
         </lightning-tab>
